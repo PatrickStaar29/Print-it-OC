@@ -17,16 +17,11 @@ const slides = [
 	}
 ]
 
-/*
-	Les variables qui sont composées de plusieurs mots peuvent être notés en :
-		- Snake case _ : majuscule_minuscule
-		- Camel case > majusculeMinuscule - Première lettre du premier mot toujours en minuscule
-
-	Pour les sélecteurs CSS, utilises plutôt querySelector au lieu de getElementById
-*/
+let currentSlidesIndex = 0
 
 const leftArrow = document.querySelector('.arrow_left');
 const rightArrow = document.querySelector('.arrow_right');
+const bannerImg = document.querySelector('.banner-img');
 
 leftArrow.addEventListener('click', () => {
   console.log('La flèche gauche a été cliquée!');
@@ -35,3 +30,20 @@ leftArrow.addEventListener('click', () => {
 rightArrow.addEventListener('click', () => {
   console.log('La flèche droite a été cliquée!');
 });
+
+leftArrow.addEventListener('click', () => {
+	currentSlidesIndex--;
+	if (currentSlidesIndex < 0) {
+	  currentSlidesIndex = slides.length - 1;
+	}
+	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlidesIndex].image;
+});
+
+rightArrow.addEventListener('click', () => {
+	currentSlidesIndex++;
+	if (currentSlidesIndex >= slides.length) {
+	  currentSlidesIndex = 0;
+	}
+	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlidesIndex].image;
+});
+
