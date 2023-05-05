@@ -24,13 +24,6 @@ const rightArrow = document.querySelector('.arrow_right');
 const bannerImg = document.querySelector('.banner-img');
 const tagLine = document.querySelector('#banner > p');
 
-leftArrow.addEventListener('click', () => {
-  console.log('La flèche gauche a été cliquée!');
-});
-
-rightArrow.addEventListener('click', () => {
-  console.log('La flèche droite a été cliquée!');
-});
 
 leftArrow.addEventListener('click', () => {
 	currentSlidesIndex--;
@@ -39,6 +32,12 @@ leftArrow.addEventListener('click', () => {
 	}
 	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlidesIndex].image;
 	tagLine.innerHTML = slides[currentSlidesIndex].tagLine;
+	const dot = document.querySelectorAll('.dot')
+	dot.forEach(el => {
+		el.classList.remove('dot_selected')
+	})
+	console.log(currentSlidesIndex)
+	document.querySelector(`.dot:nth-child(${currentSlidesIndex + 1})`).classList.add('dot_selected')
 });
 
 rightArrow.addEventListener('click', () => {
@@ -48,5 +47,9 @@ rightArrow.addEventListener('click', () => {
 	}
 	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlidesIndex].image;
 	tagLine.innerHTML = slides[currentSlidesIndex].tagLine;
+	const dot = document.querySelectorAll('.dot')
+	dot.forEach(el => {
+		el.classList.remove('dot_selected')
+	})
+	document.querySelector(`.dot:nth-child(${currentSlidesIndex + 1})`).classList.add('dot_selected')
 });
-
